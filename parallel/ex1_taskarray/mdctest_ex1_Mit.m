@@ -8,13 +8,13 @@
 %resource = findResource('scheduler', 'configuration', config);
 
 %In matlab2013a parcluster is used to create cluster object
-config='sge';
-resource = parcluster('scheduler', 'configuration', config);
+%config='sge';
+%resource = parcluster('scheduler', 'configuration', config);
 
+defaultProfile=parallel.defaultClusterProfile
+resource=parcluster(defaultProfile);
 %The set function can be used to set different propoerties of the resource
-set(resource, 'configuration', config);
-%set(resource, 'SubmitFcn', @sgeSubmitFcn);
-%set(resource, 'ClusterMatlabRoot', '/usr/local/packages6/matlab/R2013a');
+%set(resource, 'configuration', config);
 
 job=createJob(resource);
 
@@ -27,7 +27,9 @@ end
 submit(job);
 
 %wait for job to complete before continuing
-waitForState(job);
+%new release waitForState changed to wait
+%waitForState(job);
+wait(job);
 
 %The above script file can be executed as a single command using the dfeval
 %function as follows
