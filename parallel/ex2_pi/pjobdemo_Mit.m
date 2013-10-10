@@ -4,18 +4,19 @@
 
 %In old examples function findreasource has been used instead of parcluster
 %function.
-%resource = findResource('scheduler', 'configuration', 'sge');
+resource = findResource('scheduler', 'configuration', 'sge');
 
 %In matlab2013a parcluster is used to create cluster object
-resource = parcluster('scheduler', 'configuration', 'sge');
+%resource = parcluster('scheduler', 'configuration', 'sge');
 set(resource, 'configuration', 'sge');
 
-
+%defaultProfile=parallel.defaultClusterProfile
+%resource=parcluster(defaultProfile);
 %In matlab2013a createCommunicatingJob has been replaced with
 %createParallelJob.
-%parjob=createParallelJob(resource);
+parjob=createParallelJob(resource);
 
-parjob=createCommunicatingJob(resource);
+%parjob=createCommunicatingJob(resource);
 set(parjob,'MinimumNumberOfWorkers',4);
 set(parjob,'MaximumNumberOfWorkers',4);
 %createTask(parjob, 'rand', 1, {3});
@@ -24,7 +25,11 @@ createTask(parjob, 'quadpi', 1, {});
 
 submit(parjob);
 
-waitForState(parjob);
+%wait for job to complete before continuing
+%new release waitForState changed to wait
+%waitForState(job);
+wait(job);
+
 parout = getAllOutputArguments(parjob);
 
 save('results1.mat', 'parout', '-v6');
