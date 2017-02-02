@@ -55,7 +55,7 @@ end
 % Next we define an array of 32 values uniformly distributed between
 % cmin to cmax values. 
  cc = linspace( cmin , cmax , 32 ) ;
- 
+% we modify the lower limit of the colormap ( by varying c in a loop ) 
  for c = cc 
      caxis([ c , cmax+eps*200 ] ) 
      pause (0.5 ) 

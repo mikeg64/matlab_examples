@@ -19,14 +19,20 @@
 %                  RESET command rewinds the datafile to be read again.
 %          
 %%
-ds=datastore('trendtable.txt' ) ;
+ds=datastore('trendtable.txt','Whitespace' ,' ' , 'Delimiter' ,'\t' ) ;
 ds.NumHeaderLines=3;
-ds.Delimiter='\t' ;
 ds.ReadVariableNames=true;
-%  add a command here to specify the comment lines in the data to ignore.
+%%
+% INFO: Data contains comment lines which start with a character or 
+%       string that needs to be ignored. 
+%        Add a line here to specify the that all lines starting with ***
+%        will be ignored.
+%        HINT: Type  ds    to see what properties this data store has.
+%        One of them will be to do with comments. 
+%     
 
 % use the PREVIEW command to review what the data will look like when read.
-% use the READ command to read the data. (e.g.  t=read(ds) 
+% use the READ command to read the data.  e.g.  t=read(ds) ; 
 
 
 %%  At this point you will have a variable of type TABLE.
