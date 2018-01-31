@@ -45,7 +45,7 @@
 %exec('f3.sce');
 %exec('solvers.sce');
 
-function vanderpol()
+function vdpodesolvers()
 ntests=1;
 ha=zeros(1,ntests);
 st=zeros(1,ntests);  %st is solver type rk4=0,  sciodes=1, adams=2, euler=3, eulerpredictorcorrector=4
